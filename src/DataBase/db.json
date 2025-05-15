@@ -1,0 +1,54 @@
+{
+  "admin": [],
+  "user": [
+    {
+      "id": "56ee"
+    },
+    {
+      "id": "7485"
+    },
+    {
+      "id": "937c"
+    },
+    {
+      "id": "fde9"
+    },
+    {
+      "id": "9c27"
+    },
+    {
+      "id": "c602"
+    },
+    {
+      "id": "137a"
+    },
+    {
+      "id": "9cfd"
+    },
+    {
+      "id": "9633"
+    },
+    {
+      "id": "c602",
+      "name": "",
+      "password": "",
+      "email": "",
+      "phone": ""
+    },
+    {
+      "id": "5e29",
+      "name": "",
+      "password": "",
+      "email": "",
+      "phone": ""
+    },
+    {
+      "id": "2697",
+      "name": "sanchit",
+      "password": "123",
+      "email": "sanchitsnarwat@gmail.com",
+      "phone": "9875018888"
+    }
+  ],
+  "dealer": []
+}
