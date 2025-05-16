@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./SignUpPage.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Header from "../../../Header";
 import axios from "axios";
 
 const SignUpPage = () => {
+   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     password: "",
@@ -24,33 +25,10 @@ const SignUpPage = () => {
     if (password !== confirmPass) {
       alert("Password and Confirm Password should be same");
       return;
-    }
-
-    try {
-      const response = await axios.post("http://localhost:3000/user", {
-        name,
-        password,
-        email,
-        phone,
-      });
-
-      const data = response.data;
-      console.log("Data====>", data);
-      if (data.message === "User created successfully") {
-        alert("User created successfully");
-        setFormData({
-          name: "",
-          password: "",
-          confirmPass: "",
-          email: "",
-          phone: "",
-        });
-      } else {
-        alert("Error: " + data.message);
-      }
-    } catch (error) {
-      console.error("Signup Error:", error);
-      alert("Something went wrong");
+    }else{
+      console.log(formData);
+      navigate("/login")
+      alert("signup done");
     }
   };
 
