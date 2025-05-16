@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./SignUpPage.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Header";
 import axios from "axios";
 
 const SignUpPage = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState([]);
+
   const [formData, setFormData] = useState({
     name: "",
     password: "",
@@ -14,20 +16,29 @@ const SignUpPage = () => {
     phone: "",
   });
 
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    if (name === "password" || name === "confirmPass") {
+      setPasswordMismatch(false);
+      
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, password, confirmPass, email, phone } = formData;
     if (password !== confirmPass) {
-      alert("Password and Confirm Password should be same");
+      setPasswordMismatch(true);
+      alert("Your password does not match");
       return;
-    }else{
+    } else {
+      setPasswordMismatch(false);
       console.log(formData);
-      navigate("/login")
+      navigate("/login");
       alert("signup done");
     }
   };
@@ -91,6 +102,7 @@ const SignUpPage = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
+                className={passwordMismatch ? "input-error" : ""}
               />
             </div>
           </div>
@@ -105,6 +117,7 @@ const SignUpPage = () => {
               value={formData.confirmPass}
               onChange={handleChange}
               required
+              className={passwordMismatch ? "input-error" : ""}
             />
           </div>
 
@@ -126,6 +139,5 @@ const SignUpPage = () => {
     </>
   );
 };
-
 
 export default SignUpPage;
